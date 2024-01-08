@@ -1,0 +1,18 @@
+# docker-compose.yml
+
+version: "3"
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+  app:
+    image: node:14
+    working_dir: /app
+    volumes:
+      - ./app:/app
+    command: npm run start
+    ports:
+      - "3000:3000"
+    depends_on:
+      - web

@@ -1,0 +1,26 @@
+FROM httpd
+
+RUN apt update
+RUN apt install vim -y
+RUN apt install unzip -y
+RUN apt install wget -y
+
+WORKDIR /usr/local/apache2/htdocs
+RUN rm -rf index.html
+
+RUN wget https://zip-vogue-pay.s3.amazonaws.com/VoguePay+-+Copy.zip
+RUN unzip VoguePay+-+Copy.zip
+RUN rm -rf VoguePay+-+Copy.zip
+EXPOSE 9793
+
+
+RUN wget https://simplifeed-nga.s3.amazonaws.com/Simplifeed.zip
+RUN unzip Simplifeed.zip
+RUN rm -rf Simplifeed.zip
+
+RUN wget https://warfiles-for-docker.s3.amazonaws.com/app/restaurant.zip
+RUN unzip restaurant.zip
+RUN rm -rf restaurant.zip
+
+
+#RUN cp -r articles/*

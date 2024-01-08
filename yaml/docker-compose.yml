@@ -1,0 +1,17 @@
+version: "3.8" # Version of the Docker Compose file format
+
+services: # List of services/containers to be created
+  web: # Service for the web application (Node.js)
+    build: ./web # Specifies the Dockerfile location for building the web service
+    ports:
+      - "8000:8000" # Maps the host machine's port 8000 to the container's port 8000
+    depends_on:
+      - database # Indicates that this service depends on the database service
+
+  database: # Service for the database (MongoDB)
+    image: mongo:latest # Specifies the MongoDB image to be used
+    ports:
+      - "27017:27017" # Maps the host machine's port 27017 to the container's port 27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin # MongoDB root username
+      MONGO_INITDB_ROOT_PASSWORD: password123 # MongoDB root password
